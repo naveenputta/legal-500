@@ -1,0 +1,19 @@
+# Use 'createuser -s postgres' to create a general purpose db (super)user.
+
+development: &default
+  adapter: postgresql
+  encoding: unicode
+  database: legal_500_development
+  username: postgres
+  pool: 5
+  timeout: 5000
+
+test:
+  <<: *default
+  database: legal_500_test
+  min_messages: warning
+
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
