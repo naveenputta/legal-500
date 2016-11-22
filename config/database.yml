@@ -1,19 +1,19 @@
-# Use 'createuser -s postgres' to create a general purpose db (super)user.
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password:
+  host: localhost
+  port: 3306
 
-development: &default
-  adapter: postgresql
-  encoding: unicode
+development:
+  <<: *default
   database: <%= ENV['DEV_DATABASE']%>
-  username: postgres
-  pool: 5
-  timeout: 5000
 
 test:
   <<: *default
   database: <%= ENV['TEST_DATABASE']%>
-  min_messages: warning
-
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: <%= ENV['DATABASE_URL'] %>
