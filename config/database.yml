@@ -3,14 +3,14 @@
 development: &default
   adapter: postgresql
   encoding: unicode
-  database: legal_500_development
+  database: <%= ENV['DEV_DATABASE']%>
   username: postgres
   pool: 5
   timeout: 5000
 
 test:
   <<: *default
-  database: legal_500_test
+  database: <%= ENV['TEST_DATABASE']%>
   min_messages: warning
 
 
